@@ -187,9 +187,9 @@
 
                     <!-- Mail Icon -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M16 12H8m8 0l-4 4m4-4l-4-4M4 6h16v12H4z" />
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75M21.75 6.75L12 13.5 2.25 6.75M21.75 6.75A2.25 2.25 0 0019.5 4.5H4.5A2.25 2.25 0 002.25 6.75" />
                     </svg>
 
                     Email Me
@@ -234,10 +234,19 @@
     </footer>
 
     <script>
-        function toggleDarkMode() {
-            document.documentElement.classList.toggle('dark');
+        // Load dark mode preference on page load
+        if (localStorage.getItem('dark-mode') === 'true') {
+            document.documentElement.classList.add('dark');
         }
 
+        function toggleDarkMode() {
+            const btn = document.querySelector('header button');
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('dark-mode', isDark);
+            btn.textContent = isDark ? '☀️' : '🌙';
+        }
+
+        // Fade-in scroll animation
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
