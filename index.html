@@ -37,6 +37,33 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        .perspective {
+            perspective: 1200px;
+        }
+
+        .transform-style-preserve-3d {
+            transform-style: preserve-3d;
+        }
+
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        /* Hover Flip */
+        .mobile-card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Tap Flip */
+        .mobile-card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+    </style>
     </style>
 </head>
 
@@ -106,7 +133,9 @@
             <p class="leading-relaxed text-gray-600 dark:text-gray-300 max-w-3xl text-justify">
                 Based in the Philippines, I specialize in cross-platform mobile development and scalable backend
                 systems. My stack includes Flutter (Android and iOS), Firebase, Laravel, Node.js, Python, MySQL,
-                PostgreSQL, and TailwindCSS. Also have worked using Google Appsheets for internal tools and automation. With over 6 years of experience, I have a proven track record of delivering high-quality mobile applications and web platforms that drive business growth.<br>
+                PostgreSQL, and TailwindCSS. Also have worked using Google Appsheets for internal tools and automation.
+                With over 6 years of experience, I have a proven track record of delivering high-quality mobile
+                applications and web platforms that drive business growth.<br>
                 I focus on performance, maintainability, and delivering real-world business solutions.
             </p>
         </div>
@@ -122,7 +151,10 @@
                     <h4 class="font-semibold">Full Stack Mobile Developer</h4>
                     <p class="text-sm text-gray-500">2022 – Present</p>
                     <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
-                        Developed and maintained cross-platform mobile apps using Flutter, integrated with Firebase for real-time data sync, authentication, and push notifications. Built scalable backend APIs with Node.js and Python, ensuring high performance and reliability. Built numerous internal tools and automation using Google Appsheets, streamlining workflows and improving operational efficiency.
+                        Developed and maintained cross-platform mobile apps using Flutter, integrated with Firebase for
+                        real-time data sync, authentication, and push notifications. Built scalable backend APIs with
+                        Node.js and Python, ensuring high performance and reliability. Built numerous internal tools and
+                        automation using Google Appsheets, streamlining workflows and improving operational efficiency.
                     </p>
                 </div>
 
@@ -130,7 +162,10 @@
                     <h4 class="font-semibold">Full Stack Laravel Developer</h4>
                     <p class="text-sm text-gray-500">2018 – 2020</p>
                     <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
-                        Designed and implemented web applications using Laravel and MySQL, focusing on clean architecture and maintainable code. Developed responsive front-end interfaces with TailwindCSS, ensuring seamless user experiences across devices. Collaborated with cross-functional teams to deliver business-driven solutions that met client requirements.
+                        Designed and implemented web applications using Laravel and MySQL, focusing on clean
+                        architecture and maintainable code. Developed responsive front-end interfaces with TailwindCSS,
+                        ensuring seamless user experiences across devices. Collaborated with cross-functional teams to
+                        deliver business-driven solutions that met client requirements.
                     </p>
                 </div>
             </div>
@@ -144,39 +179,162 @@
 
             <!-- Web -->
             <div class="mb-16">
-                <h4 class="text-xl font-semibold mb-6">Web Projects</h4>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="p-6 border rounded-2xl hover:shadow-xl transition">
-                        <h5 class="font-semibold">Billing & Collection System</h5>
-                        <p class="text-sm mt-2 text-gray-600 dark:text-gray-300">
-                            Laravel + MySQL platform for automated billing, reporting, and payment tracking.
-                        </p>
+                <h4 class="text-xl font-semibold mb-6">
+                    Web
+                </h4>
+
+                <div class="relative max-w-4xl mx-auto">
+
+                    <!-- Carousel Wrapper -->
+                    <div class="overflow-hidden">
+                        <div id="webCarousel" class="flex transition-transform duration-700 ease-in-out">
+
+                            <!-- Slide 1 -->
+                            <div
+                                class="min-w-full flex flex-col md:flex-row items-center justify-center gap-8 p-8 text-center md:text-left">
+                                <img src="assets/img/billing-logo.png" class="w-32 h-32 object-contain" />
+
+                                <div>
+                                    <h5 class="text-xl font-semibold">
+                                        Billing & Collection System
+                                    </h5>
+                                    <p class="text-sm mt-3 text-gray-600 dark:text-gray-300 max-w-md">
+                                        Laravel + MySQL platform for automated billing,
+                                        reporting, and payment tracking.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2 -->
+                            <div
+                                class="min-w-full flex flex-col md:flex-row items-center justify-center gap-8 p-8 text-center md:text-left">
+                                <img src="assets/img/portfolio-logo.png" class="w-32 h-32 object-contain" />
+
+                                <div>
+                                    <h5 class="text-xl font-semibold">
+                                        Company Portfolio Platform
+                                    </h5>
+                                    <p class="text-sm mt-3 text-gray-600 dark:text-gray-300 max-w-md">
+                                        SEO-optimized website with CMS integration
+                                        and responsive UI using TailwindCSS.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                    <div class="p-6 border rounded-2xl hover:shadow-xl transition">
-                        <h5 class="font-semibold">Company Portfolio Platform</h5>
-                        <p class="text-sm mt-2 text-gray-600 dark:text-gray-300">
-                            SEO-optimized website with CMS integration and responsive UI using TailwindCSS.
-                        </p>
-                    </div>
+
+                    <!-- Controls (Now Outside Content Area) -->
+                    <button id="prevBtn"
+                        class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white dark:bg-gray-700 p-3 rounded-full shadow hover:scale-110 transition">
+                        ‹
+                    </button>
+
+                    <button id="nextBtn"
+                        class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white dark:bg-gray-700 p-3 rounded-full shadow hover:scale-110 transition">
+                        ›
+                    </button>
+
                 </div>
             </div>
 
             <!-- Mobile -->
-            <div>
-                <h4 class="text-xl font-semibold mb-6">Mobile Projects</h4>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="p-6 border rounded-2xl hover:shadow-xl transition">
-                        <h5 class="font-semibold">Booking Management App</h5>
-                        <p class="text-sm mt-2 text-gray-600 dark:text-gray-300">
-                            Flutter app with Firebase backend, real-time booking updates, and push notifications.
-                        </p>
+            <div class="mt-20">
+                <h4 class="text-xl font-semibold mb-6">Mobile</h4>
+
+                <div class="relative max-w-4xl mx-auto">
+
+                    <div class="overflow-hidden">
+                        <div id="mobileCarousel" class="flex transition-transform duration-700 ease-in-out">
+
+                            <!-- ===== Slide 1 ===== -->
+                            <div class="min-w-full flex justify-center p-8">
+                                <div class="mobile-card perspective w-full max-w-4xl h-80 cursor-pointer">
+
+                                    <div
+                                        class="card-inner relative w-full h-full transition-transform duration-700 transform-style-preserve-3d">
+
+                                        <!-- FRONT -->
+                                        <div
+                                            class="absolute inset-0 bg-white dark:bg-gray-800 rounded-2xl shadow backface-hidden flex flex-col md:flex-row items-center justify-center gap-8 p-8 text-center md:text-left">
+
+                                            <img src="assets/img/booking-logo.png" class="w-32 h-32 object-contain" />
+
+                                            <div>
+                                                <h5 class="text-xl font-semibold">
+                                                    Booking Management App
+                                                </h5>
+                                                <p class="text-sm mt-3 text-gray-600 dark:text-gray-300 max-w-md">
+                                                    Flutter app with Firebase backend,
+                                                    real-time booking updates and push notifications.
+                                                </p>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- BACK -->
+                                        <div
+                                            class="absolute inset-0 bg-gray-100 dark:bg-gray-900 rounded-2xl shadow rotate-y-180 backface-hidden flex gap-4 justify-center items-center p-6">
+                                            <img src="assets/img/app1.png" class="h-52 rounded-xl shadow" />
+                                            <img src="assets/img/app2.png" class="h-52 rounded-xl shadow" />
+                                            <img src="assets/img/app3.png" class="h-52 rounded-xl shadow" />
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ===== Slide 2 ===== -->
+                            <div class="min-w-full flex justify-center p-8">
+                                <div class="mobile-card perspective w-full max-w-4xl h-80 cursor-pointer">
+
+                                    <div
+                                        class="card-inner relative w-full h-full transition-transform duration-700 transform-style-preserve-3d">
+
+                                        <!-- FRONT -->
+                                        <div
+                                            class="absolute inset-0 bg-white dark:bg-gray-800 rounded-2xl shadow backface-hidden flex flex-col md:flex-row items-center justify-center gap-8 p-8 text-center md:text-left">
+
+                                            <img src="assets/img/inventory-logo.png"
+                                                class="w-32 h-32 object-contain" />
+
+                                            <div>
+                                                <h5 class="text-xl font-semibold">
+                                                    Inventory Tracking App
+                                                </h5>
+                                                <p class="text-sm mt-3 text-gray-600 dark:text-gray-300 max-w-md">
+                                                    Cross-platform inventory monitoring
+                                                    with analytics dashboard.
+                                                </p>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- BACK -->
+                                        <div
+                                            class="absolute inset-0 bg-gray-100 dark:bg-gray-900 rounded-2xl shadow rotate-y-180 backface-hidden flex gap-4 justify-center items-center p-6">
+                                            <img src="assets/img/inventory1.png" class="h-52 rounded-xl shadow" />
+                                            <img src="assets/img/inventory2.png" class="h-52 rounded-xl shadow" />
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                    <div class="p-6 border rounded-2xl hover:shadow-xl transition">
-                        <h5 class="font-semibold">Inventory Tracking App</h5>
-                        <p class="text-sm mt-2 text-gray-600 dark:text-gray-300">
-                            Cross-platform inventory monitoring app with analytics dashboard.
-                        </p>
-                    </div>
+
+                    <!-- Controls -->
+                    <button id="mobilePrev"
+                        class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white dark:bg-gray-700 p-3 rounded-full shadow hover:scale-110 transition">
+                        ‹
+                    </button>
+
+                    <button id="mobileNext"
+                        class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white dark:bg-gray-700 p-3 rounded-full shadow hover:scale-110 transition">
+                        ›
+                    </button>
+
                 </div>
             </div>
         </div>
@@ -274,6 +432,86 @@
         });
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        function initCarousel(carouselId, prevBtnId, nextBtnId, intervalTime = 5000) {
+            const carousel = document.getElementById(carouselId);
+            const wrapper = carousel.parentElement;
+            const slides = carousel.children.length;
+
+            let index = 0;
+            let autoScroll;
+            let startX = 0;
+            let currentX = 0;
+            let isSwiping = false;
+
+            function update() {
+                carousel.style.transform = `translateX(-${index * 100}%)`;
+            }
+
+            function next() {
+                index = (index + 1) % slides;
+                update();
+            }
+
+            function prev() {
+                index = (index - 1 + slides) % slides;
+                update();
+            }
+
+            document.getElementById(prevBtnId)?.addEventListener('click', prev);
+            document.getElementById(nextBtnId)?.addEventListener('click', next);
+
+            function startAuto() {
+                autoScroll = setInterval(next, intervalTime);
+            }
+
+            function stopAuto() {
+                clearInterval(autoScroll);
+            }
+
+            startAuto();
+
+            wrapper.addEventListener('mouseenter', stopAuto);
+            wrapper.addEventListener('mouseleave', startAuto);
+
+            // Swipe
+            wrapper.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                isSwiping = true;
+            });
+
+            wrapper.addEventListener('touchmove', (e) => {
+                if (!isSwiping) return;
+                currentX = e.touches[0].clientX;
+            });
+
+            wrapper.addEventListener('touchend', () => {
+                if (!isSwiping) return;
+
+                let diff = startX - currentX;
+
+                if (diff > 50) next();
+                else if (diff < -50) prev();
+
+                isSwiping = false;
+            });
+        }
+
+        // Initialize both
+        initCarousel("webCarousel", "prevBtn", "nextBtn", 5000);
+        initCarousel("mobileCarousel", "mobilePrev", "mobileNext", 6000);
+
+        document.querySelectorAll('.mobile-card').forEach(card => {
+
+            card.addEventListener('click', function(e) {
+
+                // Prevent swipe conflict
+                if (Math.abs(e.movementX) > 10) return;
+
+                this.classList.toggle('flipped');
+            });
+
+        });
     </script>
 
 </body>
