@@ -11,11 +11,9 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Immediately apply dark mode before page renders
         (function() {
-            const userPref = localStorage.getItem('dark-mode'); // saved preference
-            const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches; // system default
-
+            const userPref = localStorage.getItem('dark-mode');
+            const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches;
             if (userPref === 'true' || (userPref === null && systemPref)) {
                 document.documentElement.classList.add('dark');
             }
@@ -224,7 +222,6 @@
                         </div>
                     </div>
 
-                    <!-- Controls (Now Outside Content Area) -->
                     <button id="prevBtn"
                         class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white dark:bg-gray-700 p-3 rounded-full shadow hover:scale-110 transition">
                         ‹
