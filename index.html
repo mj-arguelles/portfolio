@@ -3,14 +3,24 @@
 
 <head>
     <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mar Jude Arguelles | Mobile Developer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mar Jude Arguelles | Mobile Developer</title>
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/img/favicon.png" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        // Immediately apply dark mode before page renders
+        (function() {
+            const userPref = localStorage.getItem('dark-mode'); // saved preference
+            const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches; // system default
+
+            if (userPref === 'true' || (userPref === null && systemPref)) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+
         tailwind.config = {
             darkMode: 'class'
         }
@@ -185,7 +195,7 @@
             <div class="flex flex-col sm:flex-row justify-center gap-4">
 
                 <!-- Email Button -->
-                <a href="mailto:ramj.arguelles@gmail.com?subject=Project%20Inquiry&body=Hi%20Mar%20Jude,%0A%0AI%20would%20like%20to%20discuss%20a%20mobile%20development%20project.%0A%0AThanks,"
+                <a href="mailto:ramj.arguelles@gmail.com?subject=Project%20Inquiry&body=Hi%20MJ,%0A%0AI%20would%20like%20to%20discuss%20a%20mobile%20development%20project.%0A%0AThanks,"
                     class="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 transition">
 
                     <!-- Mail Icon -->
@@ -248,6 +258,10 @@
             localStorage.setItem('dark-mode', isDark);
             btn.textContent = isDark ? '☀️' : '🌙';
         }
+
+        // Optional: set initial button icon correctly
+        const btn = document.querySelector('header button');
+        btn.textContent = document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
 
         // Fade-in scroll animation
         const observer = new IntersectionObserver(entries => {
