@@ -223,12 +223,12 @@
                     </div>
 
                     <button id="prevBtn"
-                        class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white dark:bg-gray-700 p-3 rounded-full shadow hover:scale-110 transition">
+                        class="absolute left-4 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-700 p-3 rounded-full shadow hover:scale-110 transition">
                         ‹
                     </button>
 
                     <button id="nextBtn"
-                        class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white dark:bg-gray-700 p-3 rounded-full shadow hover:scale-110 transition">
+                        class="absolute right-4 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-700 p-3 rounded-full shadow hover:scale-110 transition">
                         ›
                     </button>
 
@@ -323,12 +323,12 @@
 
                     <!-- Controls -->
                     <button id="mobilePrev"
-                        class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white dark:bg-gray-700 p-3 rounded-full shadow hover:scale-110 transition">
+                        class="absolute left-4 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-700 p-3 rounded-full shadow hover:scale-110 transition">
                         ‹
                     </button>
 
                     <button id="mobileNext"
-                        class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white dark:bg-gray-700 p-3 rounded-full shadow hover:scale-110 transition">
+                        class="absolute right-4 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-700 p-3 rounded-full shadow hover:scale-110 transition">
                         ›
                     </button>
 
@@ -473,6 +473,12 @@
 
             // Swipe
             wrapper.addEventListener('touchstart', (e) => {
+
+                if (e.target.closest('.mobile-card')) {
+                    isSwiping = false;
+                    return;
+                }
+
                 startX = e.touches[0].clientX;
                 isSwiping = true;
             });
@@ -500,12 +506,12 @@
 
         document.querySelectorAll('.mobile-card').forEach(card => {
 
-            card.addEventListener('click', function(e) {
+            card.addEventListener('pointerup', function(e) {
 
-                // Prevent swipe conflict
-                if (Math.abs(e.movementX) > 10) return;
+                e.stopPropagation();
 
                 this.classList.toggle('flipped');
+
             });
 
         });
