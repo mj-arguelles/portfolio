@@ -237,8 +237,7 @@
 
             <!-- Mobile -->
             <div class="mt-20">
-                <h4 class="text-xl font-semibold mb-6">Mobile</h4>
-
+                <?php /* <h4 class="text-xl font-semibold mb-6">Mobile</h4> */ ?>
                 <div class="relative max-w-4xl mx-auto">
 
                     <div class="overflow-hidden">
@@ -437,7 +436,7 @@
 
         // 4. Initialization
         const webCarousel = initCarousel("webCarousel", "prevBtn", "nextBtn", 5000);
-        const mobileCarousel = initCarousel("mobileCarousel", "mobilePrev", "mobileNext", 6000);
+        // const mobileCarousel = initCarousel("mobileCarousel", "mobilePrev", "mobileNext", 6000);
 
         document.querySelectorAll('.mobile-card').forEach(card => {
             let cardStartX = 0;
@@ -505,8 +504,11 @@
 
                         <div>
                             <h5 class="text-xl font-semibold">${app.name}</h5>
-                            <p class="text-sm mt-3 text-gray-600 dark:text-gray-300 max-w-md">
+                            <p class="text-md mt-3 text-gray-600 dark:text-gray-300 max-w-md text-justify">
                                 ${app.description}
+                            </p>
+                            <p class="text-md mt-3 text-gray-600 dark:text-gray-300 max-w-md italic text-justify">
+                                ${app.languages}
                             </p>
                         </div>
 
@@ -524,10 +526,57 @@
                 carousel.insertAdjacentHTML("beforeend", slide);
             }
 
-            initCarousel();
+            // initCarousel();
+            const mobileCarousel = initCarousel("mobileCarousel", "mobilePrev", "mobileNext", 6000);
+
+            initMobileCards(mobileCarousel);
         }
 
         loadApps();
+    </script>
+
+    <script>
+        function initMobileCards(mobileCarousel) {
+
+            document.querySelectorAll('.mobile-card').forEach(card => {
+
+                let cardStartX = 0;
+
+                const toggleFlip = (e) => {
+                    e.stopPropagation();
+                    card.classList.toggle('flipped');
+
+                    const anyFlipped = document.querySelector('.mobile-card.flipped');
+
+                    if (anyFlipped) {
+                        mobileCarousel?.stop();
+                    } else {
+                        mobileCarousel?.start();
+                    }
+                };
+
+                card.addEventListener('touchstart', (e) => {
+                    cardStartX = e.touches[0].clientX;
+                }, {
+                    passive: true
+                });
+
+                card.addEventListener('touchend', (e) => {
+
+                    let cardEndX = e.changedTouches[0].clientX;
+
+                    if (Math.abs(cardStartX - cardEndX) > 30) return;
+
+                    e.preventDefault();
+                    toggleFlip(e);
+
+                });
+
+                card.addEventListener('click', toggleFlip);
+
+            });
+
+        }
     </script>
 
 </body>

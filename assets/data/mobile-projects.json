@@ -1,21 +1,32 @@
 [
   {
     "name": "Kaizen",
-    "description": "Continuous improvement mobile app for business processes.",
+    "description": "A culinary focused mobile app that allows the staff to undergo training and assessments to ensure they are up to date with the latest food safety standards. Key Features: Training Modules, Assessments, Progress Tracking, Incident Reporting",
+    "languages": "Flutter, Firebase, RESTful API, PostreSQL,  AWS S3",
     "folder": "kaizen",
     "logo": "logo.png",
     "screenshots": ["ss1.png", "ss2.png", "ss3.png"]
   },
   {
+    "name": "iPan",
+    "description": "iPAN is a prominent property sales platform in Australia, featuring a diverse collection of quality residences tailored to different lifestyles and price ranges. With extensive brand new, off-the-plan, and project listings nation-wide. Key Features: Scheduling, Submitting Deals, Push Notifications, Commissions Insights",
+    "languages": "Flutter, Firebase, RESTful API, PostreSQL, AWS S3",
+    "folder": "ipan",
+    "logo": "logo.png",
+    "screenshots": ["ss1.png", "ss2.png", "ss3.png"]
+  },
+  {
     "name": "GoldPay",
-    "description": "Mobile wallet and payment management system.",
+    "description": "Goldpay.sg is a secure platform designed to modernize the use of gold. By digitizing physical bullion stored in secure vaults, the app provides a stable alternative to volatile fiat currencies for both trading and peer-to-merchant payments. Key Features: Real-time gold trading, User-To-User transfer, secure vault-backed asset management, and an integrated payment gateway for gold-based transactions.",
+    "languages": "Flutter, Firebase, RESTful API, PostreSQL",
     "folder": "goldpay",
     "logo": "logo.webp",
     "screenshots": ["ss1.png", "ss2.png", "ss3.png"]
   },
   {
     "name": "PGPay",
-    "description": "Payment gateway mobile app with transaction tracking.",
+    "description": "PGpay is a secure platform designed to modernize the use of gold. \n\nThe 'Physical-to-Digital' bridge allows customers to trade in physical bullion at the company's retail locations for instant PGpay wallet credits. \n\nKey Features: Real-time trading, User-To-User transfer, and and an integrated payment gateway for gold-based transactions.",
+    "languages": "Flutter, Firebase, RESTful API, PostreSQL",
     "folder": "pgpay",
     "logo": "logo.webp",
     "screenshots": ["ss1.webp", "ss2.webp", "ss3.webp"]
