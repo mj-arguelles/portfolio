@@ -174,7 +174,7 @@
     <section id="projects" class="bg-white dark:bg-gray-800 py-20 fade-in">
         <div class="max-w-6xl mx-auto px-6">
             <h3 class="text-2xl font-bold mb-12">Projects</h3>
-
+            <?php /*
             <!-- Web -->
             <div class="mb-16">
                 <h4 class="text-xl font-semibold mb-6">
@@ -234,6 +234,8 @@
 
                 </div>
             </div>
+            */
+            ?>
 
             <!-- Mobile -->
             <div class="mt-20">

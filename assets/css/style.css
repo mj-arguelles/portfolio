@@ -1,0 +1,36 @@
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.perspective {
+  perspective: 1200px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Hover Flip */
+.mobile-card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Tap Flip */
+.mobile-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
