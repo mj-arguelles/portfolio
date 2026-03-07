@@ -11,13 +11,13 @@
     "description": "Mobile wallet and payment management system.",
     "folder": "goldpay",
     "logo": "logo.webp",
-    "screenshots": ["ss1.png", "ss2.png"]
+    "screenshots": ["ss1.png", "ss2.png", "ss3.png"]
   },
   {
     "name": "PGPay",
     "description": "Payment gateway mobile app with transaction tracking.",
     "folder": "pgpay",
-    "logo": "logo.png",
-    "screenshots": ["ss1.jpg", "ss2.webp"]
+    "logo": "logo.webp",
+    "screenshots": ["ss1.webp", "ss2.webp", "ss3.webp"]
   }
 ]
