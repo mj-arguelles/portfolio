@@ -401,7 +401,6 @@
     </footer>
 
     <script>
-        // Load dark mode preference on page load
         if (localStorage.getItem('dark-mode') === 'true') {
             document.documentElement.classList.add('dark');
         }
@@ -410,19 +409,17 @@
             const btn = document.querySelector('header button');
             const isDark = document.documentElement.classList.toggle('dark');
             localStorage.setItem('dark-mode', isDark);
-            btn.textContent = isDark ? '☀️' : '🌙';
+            if (btn) btn.textContent = isDark ? '☀️' : '🌙';
         }
 
-        // Optional: set initial button icon correctly
-        const btn = document.querySelector('header button');
-        btn.textContent = document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
+        const themeBtn = document.querySelector('header button');
+        if (themeBtn) {
+            themeBtn.textContent = document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
+        }
 
-        // Fade-in scroll animation
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('show');
             });
         }, {
             threshold: 0.1
@@ -432,6 +429,8 @@
 
         function initCarousel(carouselId, prevBtnId, nextBtnId, intervalTime = 5000) {
             const carousel = document.getElementById(carouselId);
+            if (!carousel) return null;
+
             const wrapper = carousel.parentElement;
             const slides = carousel.children.length;
 
@@ -459,6 +458,7 @@
             document.getElementById(nextBtnId)?.addEventListener('click', next);
 
             function startAuto() {
+                clearInterval(autoScroll);
                 autoScroll = setInterval(next, intervalTime);
             }
 
@@ -469,51 +469,84 @@
             startAuto();
 
             wrapper.addEventListener('mouseenter', stopAuto);
-            wrapper.addEventListener('mouseleave', startAuto);
+            wrapper.addEventListener('mouseleave', () => {
+                if (!document.querySelector('.mobile-card.flipped')) startAuto();
+            });
 
-            // Swipe
+            // FIXED SWIPE LOGIC
             wrapper.addEventListener('touchstart', (e) => {
-
-                if (e.target.closest('.mobile-card')) {
-                    isSwiping = false;
-                    return;
-                }
-
+                // Removed the "if closest .mobile-card" return so swiping works on cards
                 startX = e.touches[0].clientX;
+                currentX = startX;
                 isSwiping = true;
+            }, {
+                passive: true
             });
 
             wrapper.addEventListener('touchmove', (e) => {
                 if (!isSwiping) return;
                 currentX = e.touches[0].clientX;
+            }, {
+                passive: true
             });
 
             wrapper.addEventListener('touchend', () => {
                 if (!isSwiping) return;
-
                 let diff = startX - currentX;
 
-                if (diff > 50) next();
-                else if (diff < -50) prev();
-
+                if (diff > 50) {
+                    prev(); // Swipe Left
+                } else if (diff < -50) {
+                    next(); // Swipe Right
+                }
                 isSwiping = false;
             });
+
+            return {
+                start: startAuto,
+                stop: stopAuto
+            };
         }
 
-        // Initialize both
-        initCarousel("webCarousel", "prevBtn", "nextBtn", 5000);
-        initCarousel("mobileCarousel", "mobilePrev", "mobileNext", 6000);
+        // 4. Initialization
+        const webCarousel = initCarousel("webCarousel", "prevBtn", "nextBtn", 5000);
+        const mobileCarousel = initCarousel("mobileCarousel", "mobilePrev", "mobileNext", 6000);
 
         document.querySelectorAll('.mobile-card').forEach(card => {
+            let cardStartX = 0;
 
-            card.addEventListener('pointerup', function(e) {
-
+            const toggleFlip = (e) => {
                 e.stopPropagation();
+                card.classList.toggle('flipped');
 
-                this.classList.toggle('flipped');
+                const anyFlipped = document.querySelector('.mobile-card.flipped');
+                if (anyFlipped) {
+                    mobileCarousel?.stop();
+                } else {
+                    mobileCarousel?.start();
+                }
+            };
 
+            card.addEventListener('touchstart', (e) => {
+                cardStartX = e.touches[0].clientX;
+            }, {
+                passive: true
             });
 
+            card.addEventListener('touchend', (e) => {
+                let cardEndX = e.changedTouches[0].clientX;
+
+                // IMPORTANT: If movement is > 30px, it's a swipe, NOT a flip tap
+                if (Math.abs(cardStartX - cardEndX) > 30) return;
+
+                e.preventDefault();
+                toggleFlip(e);
+            });
+
+            card.addEventListener('click', (e) => {
+                // Prevent flip on click if we just performed a swipe
+                toggleFlip(e);
+            });
         });
     </script>
 
