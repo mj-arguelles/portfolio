@@ -34,3 +34,24 @@
 .mobile-card.flipped .card-inner {
   transform: rotateY(180deg);
 }
+
+/* Mobile: auto-size flip card height based on front content */
+@media (max-width: 767px) {
+  .mobile-card .card-inner {
+    min-height: 20rem;
+    height: auto;
+  }
+
+  .mobile-card .card-inner > div:first-child {
+    position: relative;
+    inset: auto;
+  }
+
+  .mobile-card .card-inner > div:last-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -179,35 +179,68 @@ async function loadApps() {
       .join("");
 
     const slide = `
-        <div class="min-w-full flex justify-center p-8">
-            <div class="mobile-card perspective w-full max-w-4xl h-80 cursor-pointer">
+      <div class="min-w-full flex justify-center items-center p-8">
 
-                <div class="card-inner relative w-full h-full transition-transform duration-700 transform-style-preserve-3d">
+          <div class="mobile-card perspective w-full max-w-4xl h-[28rem] md:h-80 cursor-pointer">
 
-                    <div class="absolute inset-0 bg-white dark:bg-gray-800 rounded-2xl shadow backface-hidden flex flex-col md:flex-row items-center justify-center gap-8 p-8 text-center md:text-left">
+              <div class="card-inner relative w-full h-full transition-transform duration-700 transform-style-preserve-3d">
 
-                        <img src="${base}/${app.logo}" class="w-32 h-32 object-contain"/>
+                  <!-- FRONT -->
+                  <div class="absolute inset-0 bg-white dark:bg-gray-800 rounded-2xl shadow backface-hidden flex flex-col md:flex-row items-center justify-start md:justify-center gap-4 p-6 text-center md:text-left">
 
-                        <div>
-                            <h5 class="text-xl font-semibold">${app.name}</h5>
-                            <p class="text-md mt-3 text-gray-600 dark:text-gray-300 max-w-md text-justify">
-                                ${app.description}
-                            </p>
-                            <p class="text-md mt-3 text-gray-600 dark:text-gray-300 max-w-md italic text-justify">
-                                ${app.languages}
-                            </p>
-                        </div>
+                      <img
+                          src="${base}/${app.logo}"
+                          class="w-24 h-24 md:w-32 md:h-32 object-contain flex-shrink-0"
+                      />
 
-                    </div>
+                      <div class="flex-1 overflow-y-auto max-h-44 md:max-h-none w-full pr-2">
 
-                    <div class="absolute inset-0 bg-gray-100 dark:bg-gray-900 rounded-2xl shadow rotate-y-180 backface-hidden flex gap-4 justify-center items-center p-6">
-                        ${screenshotsHTML}
-                    </div>
+                          <h5 class="text-xl font-semibold sticky top-0 bg-white dark:bg-gray-800 py-1">
+                              ${app.name}
+                          </h5>
 
-                </div>
-            </div>
-        </div>
-        `;
+                          <div class="border-b border-gray-300 dark:border-gray-600 mb-3"></div>
+
+                          <p class="text-sm md:text-md mt-3 text-gray-600 dark:text-gray-300 text-justify">
+                              ${app.description}
+                          </p>
+
+                          <p class="text-sm md:text-md mt-3 text-indigo-600 dark:text-indigo-400 italic font-medium text-justify">
+                              ${app.languages}
+                          </p>
+
+                          <!-- STORE BADGES -->
+                          <div class="flex gap-4 mt-4 justify-center md:justify-start">
+
+                              <img
+                                  src="assets/img/appstore.png"
+                                  alt="Download on the App Store"
+                                  class="h-10 hover:scale-105 transition"
+                              />
+
+                              <img
+                                  src="assets/img/playstore.png"
+                                  alt="Get it on Google Play"
+                                  class="h-10 hover:scale-105 transition"
+                              />
+
+                          </div>
+
+                      </div>
+
+                  </div>
+
+                  <!-- BACK -->
+                  <div class="absolute inset-0 bg-gray-100 dark:bg-gray-900 rounded-2xl shadow rotate-y-180 backface-hidden flex gap-4 justify-center items-center p-6">
+                      ${screenshotsHTML}
+                  </div>
+
+              </div>
+
+          </div>
+
+      </div>
+      `;
 
     carousel.insertAdjacentHTML("beforeend", slide);
   }
