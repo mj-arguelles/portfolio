@@ -105,9 +105,9 @@ function initCarousel(carouselId, prevBtnId, nextBtnId, intervalTime = 5000) {
     let diff = startX - currentX;
 
     if (diff > 50) {
-      prev(); // Swipe Left
+      next(); // Swipe Left
     } else if (diff < -50) {
-      next(); // Swipe Right
+      prev(); // Swipe Right
     }
     isSwiping = false;
   });
